@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16)
 project(main)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -17,6 +17,7 @@ add_library(mylist SHARED ${LIST_SRC})
 add_executable(${CMAKE_PROJECT_NAME} main.cpp)
 target_link_libraries(${CMAKE_PROJECT_NAME} mylist)
 
-add_executable(test test.cpp)
-target_link_libraries(test mylist gtest gtest_main -pthread)
-add_test(NAME test COMMAND test)
+enable_testing()
+add_executable(test_node test.cpp)
+target_link_libraries(test_node mylist gtest gtest_main -pthread)
+add_test(NAME test COMMAND test_node)
